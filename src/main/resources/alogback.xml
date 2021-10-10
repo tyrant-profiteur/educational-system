@@ -10,7 +10,7 @@
             <level>${STDOUT_LEVEL}</level>
         </filter>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line - %msg%n</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line --> %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -33,7 +33,7 @@
             <totalSizeCap>${FILE_TOTAL_SIZE}</totalSizeCap>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line - %msg%n</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line --> %msg%n</pattern>
         </encoder>
         <prudent>false</prudent>
     </appender>
@@ -57,7 +57,7 @@
             <totalSizeCap>${FILE_DEBUG_TOTAL_SIZE}</totalSizeCap>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line - %msg%n</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line --> %msg%n</pattern>
         </encoder>
         <prudent>false</prudent>
     </appender>
@@ -81,7 +81,7 @@
             <totalSizeCap>${FILE_ERROR_TOTAL_SIZE}</totalSizeCap>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line - %msg%n</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss.SSS}] %X{logthreadId} %-5level %logger{80} %line --> %msg%n</pattern>
         </encoder>
         <prudent>false</prudent>
     </appender>
@@ -97,10 +97,12 @@
     <logger name="com.alibaba" level="WARN"/>
 
     <root>
-        <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
         <appender-ref ref="FILE_DEBUG"/>
         <appender-ref ref="FILE_ERROR"/>
+    </root>
+    <root level = "TRACE">
+        <appender-ref ref="STDOUT"/>
     </root>
 
 </configuration>
