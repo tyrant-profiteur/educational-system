@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="Biz" class="com.tyrant.educational.testcode.dynamicproxy.cglib.Biz"/>
+    <!--配置 advice-->
+    <bean id="beforeAdvice" class="com.tyrant.educational.testcode.dynamicproxy.springaop.BeforeAdvice"/>
+    <bean id="arroundAdvice" class="com.tyrant.educational.testcode.dynamicproxy.springaop.ArroundAdvice"/>
+    <!--配置pointcut-->
+    <aop:config>
+        <!--expression 定义 pointcut 执行范围-->
+        <aop:pointcut id="doMethods" expression="execution(* com.tyrant.educational.testcode..*.help(..))"/>
+        <!--在 point-ref 中引用 doMethods 的 pointcut-->
+        <aop:advisor advice-ref="beforeAdvice" pointcut-ref="doMethods"/>
+        <!--
+        任意公共方法的执行：
+            execution(public * *(..))
+        任何一个以“set”开始的方法的执行：
+            execution(* set*(..))
+        AccountService 接口的任意方法的执行：
+            execution(* com.xyz.service.AccountService.*(..))
+        定义在service包里的任意方法的执行：
+            execution(* com.xyz.service.*.*(..))
+        定义在service包和所有子包里的任意类的任意方法的执行：
+            execution(* com.xyz.service..*.*(..))
+        定义在pointcutexp包和所有子包里的JoinPointObjP2类的任意方法的执行：
+            execution(* com.test.spring.aop.pointcutexp..JoinPointObjP2.*(..))")
+            -》 最靠近(..)的为方法名,靠近.*(..))的为类名或者接口名,如上例的JoinPointObjP2.*(..))
+
+        pointcutexp包里的任意类.
+            within(com.test.spring.aop.pointcutexp.*)
+        pointcutexp包和所有子包里的任意类.
+            within(com.test.spring.aop.pointcutexp..*)
+        实现了MyInterface接口的所有类,如果MyInterface不是接口,限定MyInterface单个类.
+            this(com.test.spring.aop.pointcutexp.MyInterface)
+            -》 当一个实现了接口的类被AOP的时候,用getBean方法必须cast为接口类型,不能为该类的类型.
+
+        带有@MyTypeAnnotation标注的所有类的任意方法.
+            @within(com.elong.annotation.MyTypeAnnotation)
+            @target(com.elong.annotation.MyTypeAnnotation)
+        带有@MyTypeAnnotation标注的任意方法.
+            @annotation(com.elong.annotation.MyTypeAnnotation)
+            -》@within和@target针对类的注解,@annotation是针对方法的注解
+
+        参数带有@MyMethodAnnotation标注的方法.
+            @args(com.elong.annotation.MyMethodAnnotation)
+        参数为String类型(运行时决定)的方法.
+            args(String)
+        -->
+        <aop:advisor advice-ref="arroundAdvice" pointcut="execution(* com.tyrant.educational.testcode..*.test(..))"/>
+    </aop:config>
+</beans>
