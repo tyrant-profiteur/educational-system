@@ -9,4 +9,8 @@ public class Biz {
     public void help(){
         System.out.println("买书");
     }
+
+    public void test(){
+        System.out.println("test");
+    }
 }

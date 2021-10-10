@@ -14,5 +14,6 @@ public class BizcglibClient {
         enhancer.setCallback(new BizInterceptor());
         Biz biz = (Biz)enhancer.create();
         biz.help();
+        biz.test();
      }
 }
