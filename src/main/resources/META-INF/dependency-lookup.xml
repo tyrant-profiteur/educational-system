@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    在bean节点中设置bean实例对应的id为user，
+    同时在class属性中定义class所在的namespace。
+    之后在property节点中通过对name，value赋值来实例化user实例
+    -->
+    <bean id="user" class="com.tyrant.educational.testcode.iocinit.User" scope="prototype">
+        <property name="id" value="1"/>
+        <property name="name" value="小明"/>
+    </bean>
+
+    <bean id="vipUser" class="com.tyrant.educational.testcode.iocinit.VipUser">
+        <property name="id" value="1"/>
+        <property name="name" value="小明"/>
+        <property name="vipLev" value="3"/>
+    </bean>
+</beans>
