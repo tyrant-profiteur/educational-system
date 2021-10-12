@@ -13,6 +13,9 @@
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.tyrant.educational"/>
 
+    <!-- 启动对@AspectJ注解的支持 -->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+
     <!-- 返回数据解析，可以直接返回Object   -->
     <mvc:annotation-driven>
         <mvc:message-converters>
