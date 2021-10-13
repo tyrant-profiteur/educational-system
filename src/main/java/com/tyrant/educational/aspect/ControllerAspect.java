@@ -2,7 +2,7 @@ package com.tyrant.educational.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ruyuan.little.project.common.dto.CommonResponse;
-import com.tyrant.educational.constants.StringConstant;
+import com.tyrant.educational.constants.StringConstantPool;
 import com.tyrant.educational.exception.BusinessException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -44,7 +44,7 @@ public class ControllerAspect {
         // 执行对象
         Object target = joinPoint.getTarget();
         logger.info("请求处理方法:[{}],请求参数名称:[{}],请求参数值:[{}]",
-                target.getClass().getName() + StringConstant.DOT +  methodSignature.getMethod().getName(),
+                target.getClass().getName() + StringConstantPool.DOT +  methodSignature.getMethod().getName(),
                 JSONObject.toJSONString(parameterNames),JSONObject.toJSONString(parameterValues));
         try {
             // 开始时间

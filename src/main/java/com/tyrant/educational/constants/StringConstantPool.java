@@ -7,11 +7,16 @@ import sun.nio.cs.ext.GBK;
  * @create 2021-10-12 23:04
  * @description String 常量池
  **/
-public class StringConstant {
+public class StringConstantPool {
     /**
      * -分隔符
      */
     public static final String DASH = "-";
+
+    /**
+     * 逗号
+     */
+    public static final String COMMA = ",";
 
     /**
      * 圆点

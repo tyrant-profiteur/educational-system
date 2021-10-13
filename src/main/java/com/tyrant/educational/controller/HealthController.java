@@ -18,14 +18,15 @@ import java.util.Arrays;
  **/
 @RestController
 public class HealthController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HealthController.class);
+    private static final Logger logger = LoggerFactory.getLogger(HealthController.class);
 
     @Autowired
     private ValueTest valueTest;
 
     @RequestMapping(value = "/")
-    public CommonResponse health() {
-        return CommonResponse.success();
+    public CommonResponse health() throws Exception {
+        throw new Exception("处理异常");
+        //return CommonResponse.success();
     }
 
     @RequestMapping("/testValue")
