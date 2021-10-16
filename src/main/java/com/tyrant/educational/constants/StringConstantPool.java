@@ -26,7 +26,7 @@ public class StringConstantPool {
     /**
      * UTF-8编码
      */
-    public static final String UTF = "utf-8";
+    public static final String UTF8 = "utf-8";
 
     /**
      * GBK编码

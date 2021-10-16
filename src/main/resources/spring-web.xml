@@ -22,4 +22,16 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <!-- 配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 指定拦截路径，不在拦截路径的不处理，选择全路径-->
+            <mvc:mapping path="/**"/>
+            <!-- 指定忽略拦截路径，登录不拦截，healthController 不拦截-->
+            <mvc:exclude-mapping path="/consumer/login"/>
+            <mvc:exclude-mapping path="/"/>
+            <bean class="com.tyrant.educational.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
