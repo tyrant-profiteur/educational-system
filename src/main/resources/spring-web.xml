@@ -34,4 +34,7 @@
             <bean class="com.tyrant.educational.interceptor.LoginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 加载properties配置文件   -->
+    <context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true"/>
 </beans>
