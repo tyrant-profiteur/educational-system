@@ -23,4 +23,26 @@
         <property name="maxWait" value="60000"/>
         <property name="useUnfairLock" value="true"/>
     </bean>
+    <!-- mybtais 相关配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 定义 mybatis 的 mapper 文件扫描路径-->
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+        <!-- 定义 mybatis 的实体类路径-->
+        <property name="typeAliasesPackage" value="com.tyrant.educational.dto"/>
+        <!--加载 mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!-- 获取 SqlSession 对象，并交由 spring 管理  用SqlSessionTemplate得到的SqlSession可以不用我们自己操心事务的管理，以及关闭操作-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 给 SqlSessionTemplate 的构造函数赋值-->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 定义 mapper 扫描包-->
+    <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.tyrant.educational.mapper"/>
+    </bean>
 </beans>
